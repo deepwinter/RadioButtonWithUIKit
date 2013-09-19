@@ -19,8 +19,8 @@
 @synthesize groupId=_groupId;
 @synthesize index=_index;
 
-static const NSUInteger kRadioButtonWidth=22;
-static const NSUInteger kRadioButtonHeight=22;
+static const NSUInteger kRadioButtonWidth=44;
+static const NSUInteger kRadioButtonHeight=44;
 
 static NSMutableArray *rb_instances=nil;
 static NSMutableDictionary *rb_observers=nil;
@@ -35,7 +35,6 @@ static NSMutableDictionary *rb_observers=nil;
     if ([groupId length] > 0 && observer) {
         [rb_observers setObject:observer forKey:groupId];
         // Make it weak reference
-        [observer release];
     }
 }
 
@@ -48,7 +47,6 @@ static NSMutableDictionary *rb_observers=nil;
     
     [rb_instances addObject:radioButton];
     // Make it weak reference
-    [radioButton release];
 }
 
 #pragma mark - Class level handler
@@ -94,12 +92,6 @@ static NSMutableDictionary *rb_observers=nil;
     return self;
 }
 
-- (void)dealloc
-{
-    [_groupId release];
-    [_button release];
-    [super dealloc];
-}
 
 
 #pragma mark - Tap handling

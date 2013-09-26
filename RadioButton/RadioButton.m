@@ -53,6 +53,9 @@ static NSMutableDictionary *rb_observers=nil;
 
 +(void)buttonSelected:(RadioButton*)radioButton{
     
+    [radioButton.button setSelected:YES];
+
+    
     // Notify observers
     if (rb_observers) {
         id observer= [rb_observers objectForKey:radioButton.groupId];

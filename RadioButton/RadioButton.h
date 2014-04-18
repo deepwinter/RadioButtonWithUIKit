@@ -15,10 +15,12 @@
 @interface RadioButton : UIView {
     NSString *_groupId;
     NSUInteger _index;
+    UIImage * _customButtonImage;
 }
 @property(nonatomic,retain)NSString *groupId;
 @property(nonatomic,assign)NSUInteger index;
 @property(nonatomic,assign)UIButton * button;
+@property(nonatomic,retain)UIImage * customButtonImage;
 
 -(id)initWithGroupId:(NSString*)groupId index:(NSUInteger)index;
 +(void)addObserverForGroupId:(NSString*)groupId observer:(id)observer;

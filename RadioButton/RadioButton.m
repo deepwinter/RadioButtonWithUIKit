@@ -18,6 +18,7 @@
 
 @synthesize groupId=_groupId;
 @synthesize index=_index;
+@synthesize customButtonImage=_customButtonImage;
 
 static const NSUInteger kRadioButtonWidth=44;
 static const NSUInteger kRadioButtonHeight=44;
@@ -120,10 +121,16 @@ static NSMutableDictionary *rb_observers=nil;
     // Customize UIButton
     _button = [UIButton buttonWithType:UIButtonTypeCustom];
     _button.frame = CGRectMake(0, 0,kRadioButtonWidth, kRadioButtonHeight);
-    _button.adjustsImageWhenHighlighted = NO; 
     
-    [_button setImage:[UIImage imageNamed:@"RadioButton-Unselected"] forState:UIControlStateNormal];
-    [_button setImage:[UIImage imageNamed:@"RadioButton-Selected"] forState:UIControlStateSelected];
+    if(_customButtonImage == nil){
+        _button.adjustsImageWhenHighlighted = NO;
+        [_button setImage:[UIImage imageNamed:@"RadioButton-Unselected"] forState:UIControlStateNormal];
+        [_button setImage:[UIImage imageNamed:@"RadioButton-Selected"] forState:UIControlStateSelected];
+    } else {
+        _button.adjustsImageWhenHighlighted = YES;
+        [_button setImage:_customButtonImage forState:UIControlStateNormal];
+        [_button setImage:_customButtonImage forState:UIControlStateSelected];
+    }
     
     [_button addTarget:self action:@selector(handleButtonTap:) forControlEvents:UIControlEventTouchUpInside];
     

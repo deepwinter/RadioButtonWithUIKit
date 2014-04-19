@@ -23,6 +23,8 @@
 @property(nonatomic,retain)UIImage * customButtonImage;
 
 -(id)initWithGroupId:(NSString*)groupId index:(NSUInteger)index;
+- (id)initWithImage:(UIImage *) image andGroupId:(NSString*)groupId index:(NSUInteger)index;
+
 +(void)addObserverForGroupId:(NSString*)groupId observer:(id)observer;
 
 +(void)buttonSelected:(RadioButton*)radioButton;

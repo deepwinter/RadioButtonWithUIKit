@@ -55,7 +55,11 @@ static NSMutableDictionary *rb_observers=nil;
 +(void)buttonSelected:(RadioButton*)radioButton{
     
     [radioButton.button setSelected:YES];
-
+    if(radioButton.customButtonImage != nil) {
+        [radioButton.button.layer setBorderColor: [[UIColor blackColor] CGColor]];
+        [radioButton.button.layer setBorderWidth: 2.0];
+    }
+    
     
     // Notify observers
     if (rb_observers) {
@@ -96,6 +100,18 @@ static NSMutableDictionary *rb_observers=nil;
     return self;
 }
 
+- (id)initWithImage:(UIImage *) image andGroupId:(NSString*)groupId index:(NSUInteger)index{
+    self = [super init];
+    if (self) {
+        _groupId = groupId;
+        _index = index;
+        _customButtonImage = image;
+        [self defaultInit];
+    }
+    return self;
+   
+}
+
 
 
 #pragma mark - Tap handling
@@ -108,7 +124,10 @@ static NSMutableDictionary *rb_observers=nil;
 -(void)otherButtonSelected:(id)sender{
     // Called when other radio button instance got selected
     if(_button.selected){
-        [_button setSelected:NO];        
+        [_button setSelected:NO];
+        if(_customButtonImage != nil) {
+            [_button.layer setBorderColor: [[UIColor clearColor] CGColor]];
+        }
     }
 }
 

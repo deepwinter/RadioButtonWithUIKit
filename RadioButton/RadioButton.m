@@ -56,8 +56,7 @@ static NSMutableDictionary *rb_observers=nil;
     
     [radioButton.button setSelected:YES];
     if(radioButton.customButtonImage != nil) {
-        [radioButton.button.layer setBorderColor: [[UIColor blackColor] CGColor]];
-        [radioButton.button.layer setBorderWidth: 2.0];
+        [radioButton.button setAlpha:1.0f];
     }
     
     
@@ -107,6 +106,9 @@ static NSMutableDictionary *rb_observers=nil;
         _index = index;
         _customButtonImage = image;
         [self defaultInit];
+        _button.frame = CGRectMake(0, 0,image.size.width, image.size.height);
+        [_button setAlpha:.5f];
+
     }
     return self;
    
@@ -126,7 +128,8 @@ static NSMutableDictionary *rb_observers=nil;
     if(_button.selected){
         [_button setSelected:NO];
         if(_customButtonImage != nil) {
-            [_button.layer setBorderColor: [[UIColor clearColor] CGColor]];
+            [_button setAlpha:.5f];
+
         }
     }
 }
